@@ -1,18 +1,17 @@
 import * as React from 'react';
-import {Text} from 'react-figma-plugin-ds';
+import {Button, Input, Label, Text} from 'react-figma-plugin-ds';
 import '../styles/ui.css';
 import 'react-figma-plugin-ds/figma-plugin-ds.css';
 
 declare function require(path: string): any;
 
 const App = ({}) => {
-    React.useEffect(() => {
-        // This is how we read messages sent from the plugin controller
-        window.onmessage = event => {
-            const {type, message} = event.data.pluginMessage;
-            console.log(type, message);
-        };
-    }, []);
+    var [hue, setHue] = React.useState('');
+    var [current, setCurrent] = React.useState('None');
+
+    onmessage = event => {
+        console.log(event.data.pluginMessage);
+    };
 
     // call launchControllerFunctions('message1') to launch the message1 command in src/plugin/controller.ts
     function launchControllerFunctions(messageType) {
@@ -21,16 +20,29 @@ const App = ({}) => {
 
     return (
         <div id="root">
-            <Text size="xlarge" weight="bold">
-                Welcome to your figma plugin!
-            </Text>
-            <Text size="large" weight="normal">
-                Check out{' '}
-                <a href="https://github.com/alexandrtovmach/react-figma-plugin-ds/" target="_blank" rel="noreferrer">
-                    react-figma-plugin-ds
-                </a>{' '}
-                on gitHub to learn about the available components!
-            </Text>
+            <Text>Currently Selected Hue: {current}</Text>
+            <div>
+                <Label className="" size="" weight="">
+                    Hue
+                </Label>
+                <Input
+                    type="number"
+                    name="hue"
+                    id="hue"
+                    onChange={e => {
+                        setHue(e);
+                        let button = document.querySelector('button');
+                        button.style.cssText = `background-color: hsl(${e}, 100%, 50%)`;
+                    }}
+                />
+            </div>
+            <Button
+                onClick={() => {
+                    parent.postMessage({pluginMessage: {type: 'apply', hue}}, '*');
+                }}
+            >
+                Apply Hue
+            </Button>
         </div>
     );
 };

@@ -1,8 +1,16 @@
 #root {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
-    padding: 3rem;
+    padding: 16px;
+}
+
+input {
+    border: 1px solid #e5e5e5 !important;
+}
+
+.input {
+    width: 100% !important;
 }
