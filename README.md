@@ -8,7 +8,7 @@ Tidy Hues is a Figma plugin that allows you change just the hue of any layers yo
 
 When you first start the plugin, you will be greeted with an interface that has a number input, a slider, and an Apply button. As soon as you enter a number in the text field or use the slider, the button will change to the color of your currently selected hue.
 
-If you select some layers in your file that have any Solid or Gradient fills, and hit the Apply button, it will change all of the hue values of the colors in those layers to the hue you have selcted in the plugin. The saturation, lightness, and opacity of your layers will all remain the same.
+If you select some layers in your file that have any Solid or Gradient fills, and hit the Apply button, it will change all of the hue values of the colors in those layers to the hue you have selected in the plugin. The saturation, lightness, and opacity of your layers will all remain the same.
 
 ## Found a bug or have an idea?
 
