@@ -9,6 +9,11 @@ declare function require(path: string): any;
 const App = ({}) => {
     var [hue, setHue] = React.useState(0);
 
+    React.useEffect(() => {
+        let button = document.querySelector('button');
+        button.style.cssText = `background-color: black `;
+    }, []);
+
     onmessage = event => {
         // console.log(event.data.pluginMessage);
     };
@@ -45,9 +50,13 @@ const App = ({}) => {
                         }
                         setHue(+newHue);
                         let button = document.querySelector('button');
-                        button.style.cssText = `background-color: hsl(${e}, 100%, 50%); color: ${getCorrectTextColor(
-                            HSLToHex(newHue, 100, 50)
-                        )};`;
+                        if (e === '') {
+                            button.style.cssText = `background-color: black`;
+                        } else {
+                            button.style.cssText = `background-color: hsl(${e}, 100%, 50%); color: ${getCorrectTextColor(
+                                HSLToHex(newHue, 100, 50)
+                            )};`;
+                        }
                     }}
                 />
             </div>
