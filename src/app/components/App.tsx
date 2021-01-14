@@ -6,21 +6,14 @@ import 'react-figma-plugin-ds/figma-plugin-ds.css';
 declare function require(path: string): any;
 
 const App = ({}) => {
-    var [hue, setHue] = React.useState('');
-    var [current, setCurrent] = React.useState('None');
+    var [hue, setHue] = React.useState();
 
     onmessage = event => {
-        console.log(event.data.pluginMessage);
+        // console.log(event.data.pluginMessage);
     };
-
-    // call launchControllerFunctions('message1') to launch the message1 command in src/plugin/controller.ts
-    function launchControllerFunctions(messageType) {
-        parent.postMessage({pluginMessage: {type: messageType}}, '*');
-    }
 
     return (
         <div id="root">
-            <Text>Currently Selected Hue: {current}</Text>
             <div>
                 <Label className="" size="" weight="">
                     Hue
@@ -30,7 +23,14 @@ const App = ({}) => {
                     name="hue"
                     id="hue"
                     onChange={e => {
-                        setHue(e);
+                        let newHue = e;
+                        if (e > 360) {
+                            newHue = e % 360;
+                        } else if (e < 0) {
+                            newHue = (e % 360) + 360;
+                        }
+                        console.log(newHue);
+                        setHue(newHue);
                         let button = document.querySelector('button');
                         button.style.cssText = `background-color: hsl(${e}, 100%, 50%)`;
                     }}
