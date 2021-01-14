@@ -14,3 +14,7 @@ input {
 .input {
     width: 100% !important;
 }
+
+.hue-picker {
+    width: 100% !important;
+}

@@ -29,7 +29,6 @@ figma.ui.onmessage = msg => {
                                 paint.color = applyHue(paint.color.r, paint.color.g, paint.color.b, msg.hue);
                                 newFills.push(paint);
                             } else if (paint.type.startsWith('GRADIENT')) {
-                                console.log(paint.gradientStops);
                                 let newStops = paint.gradientStops.map(stop => {
                                     let newColor = applyHue(stop.color.r, stop.color.g, stop.color.b, msg.hue);
                                     stop.color = {
